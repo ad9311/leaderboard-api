@@ -6,7 +6,7 @@ class DOM {
   userData = () => {
     const name = document.getElementById('name').value;
     const score = document.getElementById('score').value;
-    return {name, score};
+    return { name, score };
   }
 
   cleanFields = () => {
