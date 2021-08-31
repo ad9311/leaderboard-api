@@ -1,4 +1,33 @@
-/* CSS Stylesheet */
-.hello {
-  color: red;
+body {
+  margin: 0;
+  padding: 100px 200px;
 }
+
+.refresh {
+  height: 30px;
+}
+
+.board {
+  width: 450px;
+  max-height: 500px;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+
+.gutter-right {
+  margin-right: 100px;
+}
+
+.gutter-left {
+  margin-left: 100px;
+}
+
+/*# sourceMappingURL=style.css.map */
