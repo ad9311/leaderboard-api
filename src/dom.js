@@ -3,7 +3,17 @@ class DOM {
     this.board = document.getElementById('board');
   }
 
-  userData = () => {
+  setLocalStorage = (api) => {
+    localStorage.setItem('game', JSON.stringify(api.gameID));
+    return JSON.stringify(api.gameID);
+  };
+
+  getLocalStorage = (api) => {
+    api.gameID = JSON.parse(localStorage.getItem('game'));
+    return api.gameID;
+  }
+
+  getUserData = () => {
     const name = document.getElementById('name').value;
     const score = document.getElementById('score').value;
     return { name, score };
@@ -14,28 +24,18 @@ class DOM {
     document.getElementById('score').value = '';
   }
 
-  addUserDataToList = (userData) => {
-    const li = document.createElement('li');
-    li.classList = 'p-2';
-    li.innerHTML = `${userData.name}: ${userData.score}`;
-    return li;
-  }
+  // addUserDataToList = (userData) => {
+  //   const li = document.createElement('li');
+  //   li.classList = 'p-2';
+  //   li.innerHTML = `${userData.name}: ${userData.score}`;
+  //   return li;
+  // }
 
-  renderScore() {
-    const userData = this.userData();
-    const li = this.addUserDataToList(userData);
-    this.board.appendChild(li);
-  }
-
-  setLocalStorage = (api) => {
-    localStorage.setItem('game', JSON.stringify(api.gameID));
-    return JSON.stringify(api.gameID);
-  };
-
-  getLocalStorage = (api) => {
-    api.gameID = JSON.parse(localStorage.getItem('game'));
-    return api.gameID;
-  }
+  // renderScore() {
+  //   const userData = this.userData();
+  //   const li = this.addUserDataToList(userData);
+  //   this.board.appendChild(li);
+  // }
 }
 
 const dom = new DOM();

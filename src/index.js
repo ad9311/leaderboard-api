@@ -5,15 +5,20 @@ import api from './api.js';
 
 async function checkExistingGame() {
   if(localStorage.getItem('game')) {
-    console.log('There is a local storage already!');
+    dom.getLocalStorage(api);
+    api.setScoreURL();
   } else {
-    await api.validateResponse().catch();
+    api.createRequest('POST', api.baseURL, { name: 'MyGame' });
+    await api.getNewGameID().catch();
     dom.setLocalStorage(api);
   }
 }
 
 const addNewScore = () => {
-  lb.addNewScore(dom.userData());
+  const userData = dom.getUserData();
+  lb.addNewScore(userData);
+  api.getUserData(userData);
+  api.sendNewScore();
   dom.cleanFields();
 };
 
