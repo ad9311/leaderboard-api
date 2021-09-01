@@ -29,11 +29,12 @@ class DOM {
 
   setLocalStorage = (api) => {
     localStorage.setItem('game', JSON.stringify(api.gameID));
+    return JSON.stringify(api.gameID);
   };
 
-  getLocalStorage = () => {
-    const gameID = JSON.parse(localStorage.getItem('game'));
-    return gameID.result;
+  getLocalStorage = (api) => {
+    api.gameID = JSON.parse(localStorage.getItem('game'));
+    return api.gameID;
   }
 }
 
