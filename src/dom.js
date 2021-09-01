@@ -27,19 +27,13 @@ class DOM {
     this.board.appendChild(li);
   }
 
-  updateLocalStorage = (lb) => {
-    localStorage.setItem('list', JSON.stringify(lb.list));
-    return JSON.parse(localStorage.getItem('list'));
+  setLocalStorage = (api) => {
+    localStorage.setItem('game', JSON.stringify(api.gameID));
   };
 
-  renderStorage = (lb) => {
-    if (localStorage.getItem('list')) {
-      lb.list = JSON.parse(localStorage.getItem('list'));
-      for (let i = 0; i < lb.list.length; i += 1) {
-        const li = this.addUserDataToList({ name: lb.list[i].name, score: lb.list[i].score });
-        this.board.appendChild(li);
-      }
-    }
+  getLocalStorage = () => {
+    const gameID = JSON.parse(localStorage.getItem('game'));
+    return gameID.result;
   }
 }
 

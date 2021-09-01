@@ -1,17 +1,18 @@
 import './style.css';
 import lb from './leaderboard.js';
 import dom from './dom.js';
+import api from './api.js';
 
-const renderOnLoad = () => {
-  dom.renderStorage(lb);
+const checkExistingGame = () => {
+  api.requestNewGame();
 };
 
 const addNewScore = () => {
   lb.addNewScore(dom.userData());
-  dom.updateLocalStorage(lb);
   dom.renderScore();
   dom.cleanFields();
 };
 
-window.addEventListener('load', renderOnLoad());
+// window.addEventListener('load', () => checkExistingGame());
+document.getElementById('refresh').addEventListener('click', () => api.requestNewGame());
 document.getElementById('add-score').addEventListener('click', () => addNewScore());
