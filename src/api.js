@@ -1,7 +1,10 @@
+import _ from 'lodash';
 class API {
   constructor() {
     this.gameID = {};
     this.userData = {};
+    this.scores = [];
+    this.message = '';
     this.request = new XMLHttpRequest();
     this.baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
     this.scoreURL = '';
@@ -17,28 +20,33 @@ class API {
   }
 
   getUserData(userData) {
-    this.userData = { user: userData.name, score: userData.score }
+    this.userData = { user: userData.user, score: userData.score }
   }
 
-  createRequest(method, url, object) {
+  createRequest(method, url, object = {}) {
     this.request.open(method, url, true);
     this.request.setRequestHeader('Content-type', 'application/json');
-    this.request.send(JSON.stringify(object));
+    if (!_.isEmpty(object)) {
+      this.request.send(JSON.stringify(object));
+    } else {
+      this.request.send();
+    }
   }
 
   validateResponse() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (this.request.response !== '') {
+        if (!_.isEmpty(this.request.response)) {
           resolve(this.request.response);
         } else {
-          reject('There was an error getting the data from the server. Please try again');
+          reject('Error');
         }
-      }, 1000);
+      }, 1200);
     });
   }
 
-  async getNewGameID() {
+  async getNewGameID(gameName) {
+    this.createRequest('POST', this.baseURL, gameName);
     const response = await this.validateResponse();
     this.retrieveGameID(response);
   }
@@ -46,10 +54,16 @@ class API {
   async sendNewScore() {
     this.createRequest('POST', this.scoreURL, this.userData);
     const response = await this.validateResponse();
-    console.log(response);
+    this.message = JSON.parse(response).result;
+  }
+
+  async getScores() {
+    this.createRequest('GET', this.scoreURL);
+    const response = await this.validateResponse();
+    this.scores = JSON.parse(response).result;
+    this.message = JSON.parse(response).result;
   }
 }
 
 const api = new API();
 export default api;
-// {"id":"XTlqz6zCVJWA77VUli27"}

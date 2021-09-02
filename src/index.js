@@ -8,19 +8,25 @@ async function checkExistingGame() {
     dom.getLocalStorage(api);
     api.setScoreURL();
   } else {
-    api.createRequest('POST', api.baseURL, { name: 'MyGame' });
-    await api.getNewGameID().catch();
+    await api.getNewGameID({ name: 'MyGame' }).catch();
     dom.setLocalStorage(api);
   }
 }
 
-const addNewScore = () => {
+async function addNewScore() {
   const userData = dom.getUserData();
   lb.addNewScore(userData);
   api.getUserData(userData);
-  api.sendNewScore();
+  await api.sendNewScore();
   dom.cleanFields();
+  dom.renderAPIMessage(api.message);
 };
+
+async function refreshScores() {
+  await api.getScores();
+  dom.renderScores(api.scores);
+}
 
 window.addEventListener('load', () => checkExistingGame());
 document.getElementById('add-score').addEventListener('click', () => addNewScore());
+document.getElementById('refresh').addEventListener('click', () => refreshScores())

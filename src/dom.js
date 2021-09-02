@@ -14,28 +14,34 @@ class DOM {
   }
 
   getUserData = () => {
-    const name = document.getElementById('name').value;
+    const user = document.getElementById('user').value;
     const score = document.getElementById('score').value;
-    return { name, score };
+    return { user, score };
   }
 
   cleanFields = () => {
-    document.getElementById('name').value = '';
+    document.getElementById('user').value = '';
     document.getElementById('score').value = '';
   }
 
-  // addUserDataToList = (userData) => {
-  //   const li = document.createElement('li');
-  //   li.classList = 'p-2';
-  //   li.innerHTML = `${userData.name}: ${userData.score}`;
-  //   return li;
-  // }
+  addUserDataToList = (userData) => {
+    const li = document.createElement('li');
+    li.classList = 'p-2';
+    li.innerHTML = `${userData.user}: ${userData.score}`;
+    return li;
+  }
 
-  // renderScore() {
-  //   const userData = this.userData();
-  //   const li = this.addUserDataToList(userData);
-  //   this.board.appendChild(li);
-  // }
+  renderScores(scores) {
+    this.board.innerHTML = '';
+    scores.forEach((score) => {
+      const li = this.addUserDataToList(score);
+      this.board.appendChild(li);
+    });
+  }
+
+  renderAPIMessage(message) {
+    document.getElementById('message').innerHTML = message;
+  }
 }
 
 const dom = new DOM();
