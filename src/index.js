@@ -3,7 +3,7 @@ import lb from './leaderboard.js';
 import dom from './dom.js';
 import api from './api.js';
 
-async function checkExistingGame() {
+const checkExistingGame = async () => {
   if (localStorage.getItem('game')) {
     dom.getLocalStorage(api);
     api.setScoreURL();
@@ -14,7 +14,7 @@ async function checkExistingGame() {
   }
 }
 
-async function addNewScore() {
+const addNewScore = async () => {
   const userData = dom.getUserData();
   lb.addNewScore(userData);
   api.getUserData(userData);
@@ -23,7 +23,7 @@ async function addNewScore() {
   dom.renderAPIMessage(api.message);
 }
 
-async function refreshScores() {
+const refreshScores = async () => {
   await api.getScores().catch(dom.renderAPIMessage);
   dom.renderScores(api.scores);
 }
