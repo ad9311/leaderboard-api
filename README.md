@@ -25,6 +25,13 @@ To get a local copy up and running follow these simple example steps:
 - [Node.Js](https://nodejs.org/en/)
 - [NPM](https://github.com/ad9311/webpack-todo-list.git)
 
+### Usage
+
+> When you start the application for the very first time, it will send a request to the leaderboard API to get a brand new ID for your game.<br>
+After that, you can add a new score. To see the score in the board, click the refresh button.<br>
+If you close the application and open it again, and then click refresh, it will reload all the scores associated with the game ID.<br>
+> **NOTE:** If you get an error, try again your action again, as sometimes the server takes a few milli seconds to respond.
+
 ## Authors
 
 👤 **Author1**

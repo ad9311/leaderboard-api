@@ -23,6 +23,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 ul li {
   list-style: none;
 }
@@ -34,5 +35,3 @@ ul li {
 .gutter-left {
   margin-left: 100px;
 }
-
-/*# sourceMappingURL=style.css.map */
