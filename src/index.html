@@ -9,7 +9,7 @@
   <body>
     <header class="container-fluid mb-5">
       <h1>Leaderboard</h1>
-      <p id="message"></p>
+      <div class="text-center"><p id="message"></p></div>
     </header>
     <main class="container-fluid d-flex mt-5 ms-5">
       <section class="gutter-right">
@@ -17,9 +17,15 @@
           <h2>Recent scores</h2>
           <input class="refresh" type="button" value="Refresh" id="refresh">
         </div>
-        <div class="board">
-          <ul id="board">
-          </ul>
+        <div class="board-container p-2">
+          <table id="board" class="board">
+            <colgroup>
+            </colgroup>
+            <tr>
+              <th>User</th>
+              <th>Score</th>
+            </tr>
+          </table>
         </div>
       </section>
       <section class="gutter-left">

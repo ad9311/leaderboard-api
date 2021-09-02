@@ -8,7 +8,8 @@ async function checkExistingGame() {
     dom.getLocalStorage(api);
     api.setScoreURL();
   } else {
-    await api.getNewGameID({ name: 'MyGame' }).catch();
+    await api.getNewGameID({ name: 'MyGame' });
+    api.getNewGameID().catch(dom.renderAPIMessage);
     dom.setLocalStorage(api);
   }
 }
@@ -17,13 +18,13 @@ async function addNewScore() {
   const userData = dom.getUserData();
   lb.addNewScore(userData);
   api.getUserData(userData);
-  await api.sendNewScore();
+  await api.sendNewScore().catch(dom.renderAPIMessage);
   dom.cleanFields();
   dom.renderAPIMessage(api.message);
 }
 
 async function refreshScores() {
-  await api.getScores();
+  await api.getScores().catch(dom.renderAPIMessage);
   dom.renderScores(api.scores);
 }
 

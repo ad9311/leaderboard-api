@@ -25,22 +25,30 @@ class DOM {
   }
 
   addUserDataToList = (userData) => {
-    const li = document.createElement('li');
-    li.classList = 'p-2';
-    li.innerHTML = `${userData.user}: ${userData.score}`;
-    return li;
+    const tr = document.createElement('tr');
+    const tdUser = document.createElement('td');
+    const tdScore = document.createElement('td');
+    tdUser.innerHTML = `${userData.user}`;
+    tr.appendChild(tdUser);
+    tdScore.innerHTML = `${userData.score}`;
+    tr.appendChild(tdScore);
+    return tr;
   }
 
   renderScores(scores) {
-    this.board.innerHTML = '';
+    this.board.innerHTML = '<tr><th>User</th><th>Score</th></tr>';
     scores.forEach((score) => {
-      const li = this.addUserDataToList(score);
-      this.board.appendChild(li);
+      const row = this.addUserDataToList(score);
+      this.board.appendChild(row);
     });
   }
 
   renderAPIMessage = (message) => {
-    document.getElementById('message').innerHTML = message;
+    if (message.message) {
+      document.getElementById('message').innerHTML = message.message;
+    } else {
+      document.getElementById('message').innerHTML = message;
+    }
   }
 }
 

@@ -40,9 +40,9 @@ class API {
         if (!_.isEmpty(this.request.response)) {
           resolve(this.request.response);
         } else {
-          reject(Error('Error'));
+          reject(Error('Server took too much to respond. Please try again.'));
         }
-      }, 1200);
+      }, 1000);
     });
   }
 
