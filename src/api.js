@@ -44,7 +44,7 @@ class API {
         } else {
           reject(Error('Server took too much to respond. Please try again.'));
         }
-      }, 1000);
+      }, 1200);
     });
   }
 
