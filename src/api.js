@@ -1,4 +1,6 @@
+/* eslint-disable */
 import _ from 'lodash';
+/* eslint-enable */
 
 class API {
   constructor() {
