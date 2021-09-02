@@ -39,7 +39,7 @@ class DOM {
     });
   }
 
-  renderAPIMessage(message) {
+  renderAPIMessage = (message) => {
     document.getElementById('message').innerHTML = message;
   }
 }

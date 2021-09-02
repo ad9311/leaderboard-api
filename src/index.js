@@ -4,7 +4,7 @@ import dom from './dom.js';
 import api from './api.js';
 
 async function checkExistingGame() {
-  if(localStorage.getItem('game')) {
+  if (localStorage.getItem('game')) {
     dom.getLocalStorage(api);
     api.setScoreURL();
   } else {
@@ -20,7 +20,7 @@ async function addNewScore() {
   await api.sendNewScore();
   dom.cleanFields();
   dom.renderAPIMessage(api.message);
-};
+}
 
 async function refreshScores() {
   await api.getScores();
@@ -29,4 +29,4 @@ async function refreshScores() {
 
 window.addEventListener('load', () => checkExistingGame());
 document.getElementById('add-score').addEventListener('click', () => addNewScore());
-document.getElementById('refresh').addEventListener('click', () => refreshScores())
+document.getElementById('refresh').addEventListener('click', () => refreshScores());

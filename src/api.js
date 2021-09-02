@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 class API {
   constructor() {
     this.gameID = {};
@@ -16,11 +17,11 @@ class API {
   }
 
   setScoreURL() {
-    this.scoreURL = `${this.baseURL}${this.gameID.id}/scores/`
+    this.scoreURL = `${this.baseURL}${this.gameID.id}/scores/`;
   }
 
   getUserData(userData) {
-    this.userData = { user: userData.user, score: userData.score }
+    this.userData = { user: userData.user, score: userData.score };
   }
 
   createRequest(method, url, object = {}) {
@@ -39,7 +40,7 @@ class API {
         if (!_.isEmpty(this.request.response)) {
           resolve(this.request.response);
         } else {
-          reject('Error');
+          reject(Error('Error'));
         }
       }, 1200);
     });
