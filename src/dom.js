@@ -1,15 +1,19 @@
+/* eslint-disable */
+import _ from 'lodash';
+/* eslint-enable */
+
 class DOM {
   constructor() {
     this.board = document.getElementById('board');
   }
 
   setLocalStorage = (api) => {
-    localStorage.setItem('game', JSON.stringify(api.gameID));
-    return JSON.stringify(api.gameID);
+    localStorage.setItem('ad931lb-game-api', JSON.stringify({ id: api.gameID }));
+    return JSON.stringify({ id: api.gameID });
   };
 
   getLocalStorage = (api) => {
-    api.gameID = JSON.parse(localStorage.getItem('game'));
+    api.gameID = JSON.parse(localStorage.getItem('ad931lb-game-api')).id;
     return api.gameID;
   }
 
@@ -25,30 +29,41 @@ class DOM {
   }
 
   addUserDataToList = (userData) => {
-    const tr = document.createElement('tr');
-    const tdUser = document.createElement('td');
-    const tdScore = document.createElement('td');
-    tdUser.innerHTML = `${userData.user}`;
-    tr.appendChild(tdUser);
-    tdScore.innerHTML = `${userData.score}`;
-    tr.appendChild(tdScore);
-    return tr;
+    const li = document.createElement('li');
+    const spanUser = document.createElement('span');
+    const spanScore = document.createElement('span');
+    spanUser.classList = 'user-span text-overflow';
+    spanScore.classList = 'text-overflow';
+    li.classList = 'mtb-1';
+    spanUser.innerHTML = userData.user;
+    li.appendChild(spanUser);
+    spanScore.innerHTML = userData.score;
+    li.appendChild(spanScore);
+    return li;
   }
 
   renderScores(scores) {
-    this.board.innerHTML = '<tr><th>User</th><th>Score</th></tr>';
+    this.board.innerHTML = '';
     scores.forEach((score) => {
       const row = this.addUserDataToList(score);
       this.board.appendChild(row);
     });
   }
 
-  renderAPIMessage = (message) => {
-    if (message.message) {
-      document.getElementById('message').innerHTML = message.message;
+  renderAPIMessage = (param) => {
+    if (_.isError(param) || param.message) {
+      document.getElementById('message-container').classList = 'message-in error';
+      document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${param.message}`;
     } else {
-      document.getElementById('message').innerHTML = message;
+      document.getElementById('message-container').classList = 'message-in info';
+      document.getElementById('message').innerHTML = param;
     }
+  }
+
+  clearMessage = () => {
+    setTimeout(() => {
+      document.getElementById('message-container').className += ' message-off';
+    }, 2500);
   }
 }
 
