@@ -14,9 +14,39 @@ body {
 }
 
 .title {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-left: 2rem;
   color: #e3e8e8;
   font-size: 3rem;
+}
+
+.message-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  height: 30px;
+  font-weight: bolder;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.message-off {
+  height: 0;
+  opacity: 0;
+}
+
+.info {
+  background-color: #39b82e;
+  color: #a2ff99;
+}
+
+.error {
+  background-color: #b82e2e;
+  color: #f99;
 }
 
 .left-section {

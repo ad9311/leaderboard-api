@@ -50,12 +50,20 @@ class DOM {
     });
   }
 
-  renderAPIMessage = (message = '') => {
-    if (_.isObject(message)) {
-      document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${message.message}`;
+  renderAPIMessage = (param = '') => {
+    if (_.isObject(param)) {
+      document.getElementById('message-container').classList = 'message-in error';
+      document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${param.message}`;
     } else {
-      document.getElementById('message').innerHTML = message;
+      document.getElementById('message-container').classList = 'message-in info';
+      document.getElementById('message').innerHTML = param;
     }
+  }
+
+  clearMessage = () => {
+    setTimeout(() => {
+      document.getElementById('message-container').className += ' message-off';
+    }, 2500);
   }
 }
 
