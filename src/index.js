@@ -9,8 +9,9 @@ const checkExistingGame = async () => {
     api.setScoreURL();
   } else {
     await api.getNewGameID({ name: 'MyGame' }).catch(dom.renderAPIMessage);
-    dom.clearMessage();
+    api.setScoreURL();
     dom.setLocalStorage(api);
+    dom.clearMessage();
   }
 };
 

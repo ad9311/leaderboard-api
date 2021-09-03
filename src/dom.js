@@ -50,8 +50,8 @@ class DOM {
     });
   }
 
-  renderAPIMessage = (param = '') => {
-    if (_.isObject(param)) {
+  renderAPIMessage = (param) => {
+    if (_.isError(param) || param.message) {
       document.getElementById('message-container').classList = 'message-in error';
       document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${param.message}`;
     } else {

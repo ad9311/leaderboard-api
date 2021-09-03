@@ -43,7 +43,13 @@ class API {
       body: JSON.stringify(this.objectPresent(object)),
     });
     const response = await request.json();
-    return response.result;
+    let finalResponse;
+    if (request.status === 200 || request.status === 201 || request.ok) {
+      finalResponse = response.result;
+    } else {
+      finalResponse = response;
+    }
+    return finalResponse;
   }
 
   getNewGameID = async (gameName) => {
