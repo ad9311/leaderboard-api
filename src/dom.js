@@ -28,7 +28,9 @@ class DOM {
     const li = document.createElement('li');
     const spanUser = document.createElement('span');
     const spanScore = document.createElement('span');
-    spanUser.classList = 'user-span';
+    spanUser.classList = 'user-span text-overflow';
+    spanScore.classList = 'text-overflow';
+    li.classList = 'mtb-1';
     spanUser.innerHTML = userData.user;
     li.appendChild(spanUser);
     spanScore.innerHTML = userData.score;

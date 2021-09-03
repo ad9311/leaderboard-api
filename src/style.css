@@ -28,15 +28,19 @@ body {
 }
 
 #refresh {
-  margin-left: 0;
-  margin-bottom: 1rem;
+  position: relative;
+  margin-bottom: 0.8rem;
 }
 
 .board {
   max-width: 100%;
-  max-height: 310px;
-  overflow-y: scroll;
   border: 0.2rem solid #abb9ba;
+}
+
+.indicators {
+  padding: 2px 52px;
+  background-color: #455354;
+  color: #e3e8e8;
 }
 
 .form {
@@ -45,6 +49,8 @@ body {
 
 ol {
   margin: 0;
+  max-height: 310px;
+  overflow-y: scroll;
 }
 ol li {
   margin-right: 40px;
@@ -60,7 +66,13 @@ ol li:nth-child(even) {
 }
 
 .user-span {
-  min-width: 100px;
+  width: 180px;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .button {
@@ -99,12 +111,13 @@ ol li:nth-child(even) {
   }
 
   #refresh {
-    margin-left: 16rem;
-    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 30%;
   }
 
   .user-span {
-    min-width: 200px;
+    width: 230px;
   }
 }
 @media screen and (min-width: 1380px) {

@@ -15,11 +15,15 @@
     </header>
     <main class="pcon-6 d-flex justify-start flex-column flex-row-3">
       <section class="left-section">
-        <div>
+        <div class="pos-relative">
           <h2 class="d-inline-block-3 d-block">Recent scores</h2>
-          <input class="ml-5 button" type="button" value="Refresh" id="refresh">
+          <input class="button" type="button" value="Refresh" id="refresh">
         </div>
-        <div class="board">
+        <div class="pos-relative board">
+          <div class="pos-sticky top-0 indicators">
+            <span class="d-inline-block fs-2 fw-4 user-span">User</span>
+            <span class="d-inline-block fs-2 fw-4 pl-1">Score</span>
+          </div>
           <ol id="board">
           </ol>
         </div>
