@@ -1,14 +1,17 @@
-import _ from 'lodash';
 import './style.css';
+import lb from './leaderboard.js';
+import dom from './dom.js';
 
-function component() {
-  const element = document.createElement('h1');
+const renderOnLoad = () => {
+  dom.renderStorage(lb);
+};
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+const addNewScore = () => {
+  lb.addNewScore(dom.userData());
+  dom.updateLocalStorage(lb);
+  dom.renderScore();
+  dom.cleanFields();
+};
 
-  return element;
-}
-
-document.body.appendChild(component());
+window.addEventListener('load', renderOnLoad());
+document.getElementById('add-score').addEventListener('click', () => addNewScore());
