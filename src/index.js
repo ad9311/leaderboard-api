@@ -16,12 +16,17 @@ const checkExistingGame = async () => {
 };
 
 const addNewScore = async () => {
-  const userData = dom.getUserData();
-  lb.addNewScore(userData);
-  api.getUserData(userData);
-  dom.cleanFields();
-  await api.sendNewScore().catch(dom.renderAPIMessage);
-  dom.renderAPIMessage(api.message);
+  dom.getUserData();
+  const validation = await dom.validateInput().catch(dom.renderAPIMessage);
+  if (validation) {
+    lb.addNewScore(dom.userData);
+    api.getUserData(dom.userData);
+    dom.cleanFields();
+    await api.sendNewScore().catch(dom.renderAPIMessage);
+    dom.renderAPIMessage(api.message);
+  } else {
+    dom.cleanFields();
+  }
   dom.clearMessage();
 };
 

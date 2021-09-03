@@ -5,6 +5,7 @@ import _ from 'lodash';
 class DOM {
   constructor() {
     this.board = document.getElementById('board');
+    this.userData = {};
   }
 
   setLocalStorage = (api) => {
@@ -20,7 +21,7 @@ class DOM {
   getUserData = () => {
     const user = document.getElementById('user').value;
     const score = document.getElementById('score').value;
-    return { user, score };
+    this.userData = { user, score };
   }
 
   cleanFields = () => {
@@ -53,7 +54,7 @@ class DOM {
   renderAPIMessage = (param) => {
     if (_.isError(param) || param.message) {
       document.getElementById('message-container').classList = 'message-in error';
-      document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${param.message}`;
+      document.getElementById('message').innerHTML = `${param.message} Please try again.`;
     } else {
       document.getElementById('message-container').classList = 'message-in info';
       document.getElementById('message').innerHTML = param;
@@ -63,7 +64,19 @@ class DOM {
   clearMessage = () => {
     setTimeout(() => {
       document.getElementById('message-container').className += ' message-off';
-    }, 2500);
+    }, 3000);
+  }
+
+  validateInput = async () => {
+    const regexUser = new RegExp(/^[^\s][\w\s-]+$/, 'g');
+    const regexScore = new RegExp(/^[1-9]\d*$/, 'g');
+    let validation = false;
+    if (regexUser.test(this.userData.user) && regexScore.test(this.userData.score)) {
+      validation = true;
+    } else {
+      throw Error('Incorrect input format.');
+    }
+    return validation;
   }
 }
 
