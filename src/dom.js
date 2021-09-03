@@ -8,12 +8,12 @@ class DOM {
   }
 
   setLocalStorage = (api) => {
-    localStorage.setItem('game', JSON.stringify({ id: api.gameID }));
+    localStorage.setItem('ad931lb-game-api', JSON.stringify({ id: api.gameID }));
     return JSON.stringify({ id: api.gameID });
   };
 
   getLocalStorage = (api) => {
-    api.gameID = JSON.parse(localStorage.getItem('game')).id;
+    api.gameID = JSON.parse(localStorage.getItem('ad931lb-game-api')).id;
     return api.gameID;
   }
 

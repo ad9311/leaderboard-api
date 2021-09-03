@@ -4,7 +4,7 @@ import dom from './dom.js';
 import api from './api.js';
 
 const checkExistingGame = async () => {
-  if (localStorage.getItem('game')) {
+  if (localStorage.getItem('ad931lb-game-api')) {
     dom.getLocalStorage(api);
     api.setScoreURL();
   } else {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is leaderboard project that contects to an API to store scores.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ad9311/css-reductor@alpha/css/reductor.css">
+    <title>Leaderboard</title>
+  <script defer src="index.bundle.js"></script></head>
+  <body>
+    <header class="mt-6">
+      <section class="title-div">
+        <h1 class="title con-6 m-0">Leaderboard</h1>
+        <div id="message-container" class="message-off error">
+          <span class="m-0" id="message"></span>
+        </div>
+      </section>
+    </header>
+    <main class="pcon-6 d-flex justify-start flex-column flex-row-3">
+      <section class="left-section">
+        <div class="pos-relative">
+          <h2 class="d-inline-block-3 d-block">Recent scores</h2>
+          <input class="button" type="button" value="Refresh" id="refresh">
+        </div>
+        <div class="pos-relative board">
+          <div class="pos-sticky top-0 indicators">
+            <span class="d-inline-block fs-2 fw-4 user-span">User</span>
+            <span class="d-inline-block fs-2 fw-4 pl-1">Score</span>
+          </div>
+          <ol id="board">
+          </ol>
+        </div>
+      </section>
+      <section class="right-section">
+        <div>
+          <h2>Add your scores</h2>
+          <form class="form">
+            <ul>
+              <li class="pb-2">
+                <input class="textbox" id="user" type="text" placeholder="User">
+              </li>
+              <li class="pb-2">
+                <input class="textbox" id="score" type="text" placeholder="Score">
+              </li>
+              <li class="d-flex justify-end">
+                <input class="button" type="button" value="Submit" id="add-score">
+              </li>
+            </ul>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
