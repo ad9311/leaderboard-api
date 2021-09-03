@@ -29,13 +29,16 @@ class DOM {
     document.getElementById('score').value = '';
   }
 
-  addUserDataToList = (userData) => {
+  addUserDataToList = (userData, index) => {
     const li = document.createElement('li');
+    const spanNumber = document.createElement('span');
     const spanUser = document.createElement('span');
     const spanScore = document.createElement('span');
+    spanNumber.classList = 'number-span text-overflow';
     spanUser.classList = 'user-span text-overflow';
     spanScore.classList = 'text-overflow';
-    li.classList = 'mtb-1';
+    spanNumber.innerHTML = index + 1;
+    li.appendChild(spanNumber);
     spanUser.innerHTML = userData.user;
     li.appendChild(spanUser);
     spanScore.innerHTML = userData.score;
@@ -50,8 +53,8 @@ class DOM {
   renderScores(scores) {
     this.sortScores(scores);
     this.board.innerHTML = '';
-    scores.forEach((score) => {
-      const row = this.addUserDataToList(score);
+    scores.forEach((score, index) => {
+      const row = this.addUserDataToList(score, index);
       this.board.appendChild(row);
     });
   }
