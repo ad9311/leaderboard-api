@@ -43,7 +43,12 @@ class DOM {
     return li;
   }
 
+  sortScores = (scores) => {
+    scores.sort((a, b) => parseInt(b.score, 10) - parseInt(a.score, 10));
+  }
+
   renderScores(scores) {
+    this.sortScores(scores);
     this.board.innerHTML = '';
     scores.forEach((score) => {
       const row = this.addUserDataToList(score);
@@ -68,8 +73,8 @@ class DOM {
   }
 
   validateInput = async () => {
-    const regexUser = new RegExp(/^[^\s][\w\s-]+$/, 'g');
-    const regexScore = new RegExp(/^[1-9]\d*$/, 'g');
+    const regexUser = new RegExp(/^[^\s].+$/, 'g');
+    const regexScore = new RegExp(/^([0-9]|[1-9][0-9]+)$/, 'g');
     let validation = false;
     if (regexUser.test(this.userData.user) && regexScore.test(this.userData.score)) {
       validation = true;
