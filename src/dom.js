@@ -1,15 +1,19 @@
+/* eslint-disable */
+import _ from 'lodash';
+/* eslint-enable */
+
 class DOM {
   constructor() {
     this.board = document.getElementById('board');
   }
 
   setLocalStorage = (api) => {
-    localStorage.setItem('game', JSON.stringify(api.gameID));
-    return JSON.stringify(api.gameID);
+    localStorage.setItem('game', JSON.stringify({ id: api.gameID }));
+    return JSON.stringify({ id: api.gameID });
   };
 
   getLocalStorage = (api) => {
-    api.gameID = JSON.parse(localStorage.getItem('game'));
+    api.gameID = JSON.parse(localStorage.getItem('game')).id;
     return api.gameID;
   }
 
@@ -46,9 +50,9 @@ class DOM {
     });
   }
 
-  renderAPIMessage = (message) => {
-    if (message.message) {
-      document.getElementById('message').innerHTML = message.message;
+  renderAPIMessage = (message = '') => {
+    if (_.isObject(message)) {
+      document.getElementById('message').innerHTML = `There has been an internal error. Please try again. ${message.message}`;
     } else {
       document.getElementById('message').innerHTML = message;
     }

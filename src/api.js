@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 class API {
   constructor() {
-    this.gameID = {};
+    this.gameID = '';
     this.userData = {};
     this.scores = [];
     this.message = '';
@@ -14,57 +14,51 @@ class API {
   }
 
   retrieveGameID(string) {
-    const result = string.split(' ');
-    this.gameID = { id: result[3] };
+    const result = string.split(' ')[3];
+    this.gameID = result;
   }
 
   setScoreURL() {
-    this.scoreURL = `${this.baseURL}${this.gameID.id}/scores/`;
+    this.scoreURL = `${this.baseURL}${this.gameID}/scores/`;
   }
 
   getUserData(userData) {
     this.userData = { user: userData.user, score: userData.score };
   }
 
-  createRequest(method, url, object = {}) {
-    this.request.open(method, url, true);
-    this.request.setRequestHeader('Content-type', 'application/json');
+  objectPresent = (object) => {
     if (!_.isEmpty(object)) {
-      this.request.send(JSON.stringify(object));
-    } else {
-      this.request.send();
+      return object;
     }
+    return undefined;
   }
 
-  validateResponse() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (!_.isEmpty(this.request.response)) {
-          resolve(this.request.response);
-        } else {
-          reject(Error('Server took too much to respond. Please try again.'));
-        }
-      }, 1200);
+  async connectToAPI(requestMethod, url, object = {}) {
+    const request = await fetch(url, {
+      method: requestMethod,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.objectPresent(object)),
     });
+    const response = await request.json();
+    return response.result;
   }
 
-  async getNewGameID(gameName) {
-    this.createRequest('POST', this.baseURL, gameName);
-    const response = await this.validateResponse();
+  getNewGameID = async (gameName) => {
+    const response = await this.connectToAPI('POST', this.baseURL, gameName);
     this.retrieveGameID(response);
+  };
+
+  sendNewScore = async () => {
+    const response = await this.connectToAPI('POST', this.scoreURL, this.userData);
+    this.message = response;
   }
 
-  async sendNewScore() {
-    this.createRequest('POST', this.scoreURL, this.userData);
-    const response = await this.validateResponse();
-    this.message = JSON.parse(response).result;
-  }
-
-  async getScores() {
-    this.createRequest('GET', this.scoreURL);
-    const response = await this.validateResponse();
-    this.scores = JSON.parse(response).result;
-    this.message = JSON.parse(response).result;
+  getScores = async () => {
+    const response = await this.connectToAPI('GET', this.scoreURL);
+    this.scores = response;
   }
 }
 

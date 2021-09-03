@@ -8,8 +8,7 @@ const checkExistingGame = async () => {
     dom.getLocalStorage(api);
     api.setScoreURL();
   } else {
-    await api.getNewGameID({ name: 'MyGame' });
-    api.getNewGameID().catch(dom.renderAPIMessage);
+    await api.getNewGameID({ name: 'MyGame' }).catch(dom.renderAPIMessage);
     dom.setLocalStorage(api);
   }
 };

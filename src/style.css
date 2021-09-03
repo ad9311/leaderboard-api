@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -52,15 +53,18 @@ ol {
   max-height: 310px;
   overflow-y: scroll;
 }
+
 ol li {
   margin-right: 40px;
   list-style: decimal;
 }
+
 ol li span {
   display: inline-block;
   padding-left: 0.75rem;
   font-size: 1.5rem;
 }
+
 ol li:nth-child(even) {
   background-color: #abb9ba;
 }
@@ -120,10 +124,9 @@ ol li:nth-child(even) {
     width: 230px;
   }
 }
+
 @media screen and (min-width: 1380px) {
   .title {
     padding-left: 0;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
