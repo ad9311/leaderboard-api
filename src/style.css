@@ -15,7 +15,7 @@ body {
 .title {
   padding-left: 2rem;
   color: #e3e8e8;
-  font-size: 4.2rem;
+  font-size: 3rem;
 }
 
 .left-section {
@@ -52,12 +52,15 @@ ol li {
 }
 ol li span {
   display: inline-block;
-  min-width: 150px;
   padding-left: 0.75rem;
   font-size: 1.5rem;
 }
 ol li:nth-child(even) {
   background-color: #abb9ba;
+}
+
+.user-span {
+  min-width: 100px;
 }
 
 .button {
@@ -80,6 +83,10 @@ ol li:nth-child(even) {
 }
 
 @media screen and (min-width: 768px) {
+  .title {
+    font-size: 4.5rem;
+  }
+
   .left-section {
     width: 500px;
     margin-left: 2.5rem;
@@ -92,8 +99,12 @@ ol li:nth-child(even) {
   }
 
   #refresh {
-    margin-left: 3.8rem;
+    margin-left: 16rem;
     margin-bottom: 0;
+  }
+
+  .user-span {
+    min-width: 200px;
   }
 }
 @media screen and (min-width: 1380px) {
