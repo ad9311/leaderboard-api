@@ -25,18 +25,18 @@ class DOM {
   }
 
   addUserDataToList = (userData) => {
-    const tr = document.createElement('tr');
-    const tdUser = document.createElement('td');
-    const tdScore = document.createElement('td');
-    tdUser.innerHTML = `${userData.user}`;
-    tr.appendChild(tdUser);
-    tdScore.innerHTML = `${userData.score}`;
-    tr.appendChild(tdScore);
-    return tr;
+    const li = document.createElement('li');
+    const spanUser = document.createElement('span');
+    const spanScore = document.createElement('span');
+    spanUser.innerHTML = userData.user;
+    li.appendChild(spanUser);
+    spanScore.innerHTML = userData.score;
+    li.appendChild(spanScore);
+    return li;
   }
 
   renderScores(scores) {
-    this.board.innerHTML = '<tr><th>User</th><th>Score</th></tr>';
+    this.board.innerHTML = '';
     scores.forEach((score) => {
       const row = this.addUserDataToList(score);
       this.board.appendChild(row);
