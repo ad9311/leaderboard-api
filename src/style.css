@@ -24,7 +24,7 @@ body {
 }
 
 .title-animation-on {
-  animation: loading 3s ease-in-out forwards infinite alternate;
+  animation: loading 0.8s ease-in-out forwards infinite alternate;
 }
 
 @keyframes loading {
@@ -33,19 +33,19 @@ body {
   }
 
   25% {
-    color: #00ff80;
+    color: red;
   }
 
   50% {
-    color: #5f0;
-  }
-
-  75% {
     color: #ffd500;
   }
 
+  75% {
+    color: #00ff80;
+  }
+
   100% {
-    color: red;
+    color: #5f0;
   }
 }
 
