@@ -18,9 +18,35 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 2rem;
-  color: #e3e8e8;
+  color: #b8e0e0;
   font-size: 3rem;
   font-family: "Courgette", cursive;
+}
+
+.title-animation-on {
+  animation: loading 3s ease-in-out forwards infinite alternate;
+}
+
+@keyframes loading {
+  0% {
+    color: #e3e8e8;
+  }
+
+  25% {
+    color: #00ff80;
+  }
+
+  50% {
+    color: #5f0;
+  }
+
+  75% {
+    color: #ffd500;
+  }
+
+  100% {
+    color: red;
+  }
 }
 
 .message-in {
@@ -30,13 +56,7 @@ body {
   opacity: 1;
   height: 30px;
   font-weight: bolder;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
+  transition: all 0.7s ease-out;
 }
 
 .message-off {

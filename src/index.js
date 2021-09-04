@@ -11,7 +11,6 @@ const checkExistingGame = async () => {
     await api.getNewGameID({ name: 'MyGame' }).catch(dom.renderAPIMessage);
     api.setScoreURL();
     dom.setLocalStorage(api);
-    dom.clearMessage();
   }
 };
 
@@ -27,13 +26,11 @@ const addNewScore = async () => {
   } else {
     dom.cleanFields();
   }
-  dom.clearMessage();
 };
 
 const refreshScores = async () => {
   await api.getScores().catch(dom.renderAPIMessage);
   dom.renderScores(api.scores);
-  dom.clearMessage();
 };
 
 window.addEventListener('load', () => checkExistingGame());

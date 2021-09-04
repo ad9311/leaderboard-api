@@ -6,6 +6,7 @@ class DOM {
   constructor() {
     this.board = document.getElementById('board');
     this.userData = {};
+    this.animationGen = this.generateAnimation();
   }
 
   setLocalStorage = (api) => {
@@ -67,12 +68,9 @@ class DOM {
       document.getElementById('message-container').classList = 'message-in info';
       document.getElementById('message').innerHTML = param;
     }
-  }
-
-  clearMessage = () => {
     setTimeout(() => {
       document.getElementById('message-container').className += ' message-off';
-    }, 3000);
+    }, 5000);
   }
 
   validateInput = async () => {
@@ -85,6 +83,15 @@ class DOM {
       throw Error('Incorrect input format.');
     }
     return validation;
+  }
+
+  * generateAnimation() {
+    while (true) {
+      document.getElementById('title').classList += ' title-animation-on';
+      yield this.wating = true;
+      document.getElementById('title').classList = 'title con-6 m-0';
+      yield this.wating = false;
+    }
   }
 }
 
