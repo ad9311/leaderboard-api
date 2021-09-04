@@ -1,6 +1,7 @@
 /* eslint-disable */
 import _ from 'lodash';
 /* eslint-enable */
+import dom from './dom.js';
 
 class API {
   constructor() {
@@ -34,6 +35,7 @@ class API {
   }
 
   async connectToAPI(requestMethod, url, object = {}) {
+    dom.animationGen.next();
     const request = await fetch(url, {
       method: requestMethod,
       headers: {
@@ -49,6 +51,7 @@ class API {
     } else {
       finalResponse = response;
     }
+    dom.animationGen.next();
     return finalResponse;
   }
 

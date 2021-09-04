@@ -11,24 +11,26 @@ const checkExistingGame = async () => {
     await api.getNewGameID({ name: 'MyGame' }).catch(dom.renderAPIMessage);
     api.setScoreURL();
     dom.setLocalStorage(api);
-    dom.clearMessage();
   }
 };
 
 const addNewScore = async () => {
-  const userData = dom.getUserData();
-  lb.addNewScore(userData);
-  api.getUserData(userData);
-  dom.cleanFields();
-  await api.sendNewScore().catch(dom.renderAPIMessage);
-  dom.renderAPIMessage(api.message);
-  dom.clearMessage();
+  dom.getUserData();
+  const validation = await dom.validateInput().catch(dom.renderAPIMessage);
+  if (validation) {
+    lb.addNewScore(dom.userData);
+    api.getUserData(dom.userData);
+    dom.cleanFields();
+    await api.sendNewScore().catch(dom.renderAPIMessage);
+    dom.renderAPIMessage(api.message);
+  } else {
+    dom.cleanFields();
+  }
 };
 
 const refreshScores = async () => {
   await api.getScores().catch(dom.renderAPIMessage);
   dom.renderScores(api.scores);
-  dom.clearMessage();
 };
 
 window.addEventListener('load', () => checkExistingGame());
